@@ -1,44 +1,23 @@
 import * as THREE from "three";
-import { OrbitControls } from "jsm/controls/OrbitControls.js";
+
+const scene = new THREE.Scene();
 
 const w = window.innerWidth;
 const h = window.innerHeight;
+const cam = new THREE.PerspectiveCamera(75, w / h, 0.5, 10);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(w, h);
 document.body.appendChild(renderer.domElement);
+renderer.setAnimationLoop(animate);
 
-const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 10);
+const geo = new THREE.IcosahedronGeometry(2, 8);
+const mat = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const earth = new THREE.Mesh(geo, mat);
+scene.add(earth);
 
-const scene = new THREE.Scene();
-
-const geometry = new THREE.IcosahedronGeometry(2, 2);
-const material = new THREE.MeshStandardMaterial({ color: 0xff3495 });
-const mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
-
-const wireframe = new THREE.WireframeGeometry(geometry);
-const line = new THREE.LineSegments(wireframe);
-scene.add(line);
-
-camera.position.z = 5;
-
-const light = new THREE.HemisphereLight(0xffffbb, 0x080820, 3);
-scene.add(light);
-
-scene.background = new THREE.Color(0xffffff);
-
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.setDampingFactor = 0.05;
-controls.update();
+cam.position.z = 5;
 
 function animate() {
-  mesh.rotation.x += 0.01;
-  mesh.rotation.y += 0.01;
-  line.rotation.x += 0.01;
-  line.rotation.y += 0.01;
-  controls.update();
-  renderer.render(scene, camera);
+  renderer.render(scene, cam);
 }
-renderer.setAnimationLoop(animate);
