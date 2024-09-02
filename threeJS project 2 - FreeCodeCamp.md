@@ -35,10 +35,14 @@ What Went Wrong
 We also use a directional light this time so that it mimics the sun a lil. Of course change the default set positions to your liking. All of these lights (of the sun and the cities) are added to a single group so that they can work together.
 
 We added lights for the different cities too. While doing this we gotta turn on additive blending to make the different parts work together.
+you set the position in a new by position.set(1,1,1)
 
-We also added clouds on top of this and raised the scalar just a bit instead of letting it sit flat.
+ For making the city lights show up even during darkness, gotta make it a meshBasicMaterial, so that it is unaffected by any other light sources. That's why the basic material is useful. Ooh this could be a good card, paste the code then ask why the light didn't show on shadowed side. 
 
-Finally added a lil glow to the whole earth to simulate the atmospheric glow. set scalar a lil higher. 
+
+We also added clouds on top of this and raised the scalar just a bit instead of letting it sit flat. do that by scale.setscalar(1.004)
+
+Finally added a lil glow to the whole earth to simulate the atmospheric glow. set scalar a lil higher. Now going to add the fresnel shader on top.
 
 It's cool how we can move the clouds a lil faster to show how it passes over the cities across earth. 
 
