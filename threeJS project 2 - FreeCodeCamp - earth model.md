@@ -8,7 +8,7 @@ Tags:
 
 
 
-# threeJS project 2 - FreeCodeCamp
+# threeJS project 2 - FreeCodeCamp - earth model
 
 This time we're making an Earth.
 
